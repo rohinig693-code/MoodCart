@@ -217,6 +217,7 @@ input {
 }
 
 
+
 /* ===============================
    FOOTER
 =============================== */
@@ -243,4 +244,30 @@ footer {
         font-size: 22px;
     }
 
+}
+/* CENTER POPUP */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+
+    background: #131921;
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    font-size: 18px;
+    text-align: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+
+    z-index: 99999;
+}
+
+.popup.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
 }
