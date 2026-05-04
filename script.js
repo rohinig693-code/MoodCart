@@ -5,18 +5,25 @@
 function loginUser(event) {
     event.preventDefault();
 
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
+    let username = document.getElementById("username").value.trim();
+    let password = document.getElementById("password").value.trim();
 
-    if (username === "admin" && password === "1234") {
-        localStorage.setItem("loggedIn", true);
-        showPopup("✅ Login Successful");       
-        window.location.href = "index.html";
-    } else {
-        showPopup("❌ Invalid Credentials");
+    // OPTIONAL: just basic check for empty fields
+    if (username === "" || password === "") {
+        showPopup("❌ Please enter username and password");
+        return;
     }
-}
 
+    // OPEN LOGIN (ANY USER, ANY PASSWORD)
+    localStorage.setItem("loggedIn", "true");
+    localStorage.setItem("user", username);
+
+    showPopup("Login Successful 🎉");
+
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 1000);
+}
 
 // ===============================
 // MOOD SELECTION
@@ -35,6 +42,13 @@ function selectMood(mood) {
 window.onload = function () {
     loadProducts();
     loadCart();
+
+    let user = localStorage.getItem("user");
+
+    if (user && document.getElementById("welcome")) {
+        document.getElementById("welcome").innerText =
+            "Welcome " + user;
+    }
 };
 
 
